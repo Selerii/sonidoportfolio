@@ -1,16 +1,16 @@
-/* General styles */
+/* General styles for the document */
 body {
   font-family: 'Roboto', sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Dark theme for body to ensure global consistency */
+/* Dark theme styles for body to ensure global consistency */
 body.dark-theme {
   background-color: #1a1a1a;
   color: #f8f9fa;
 }
 
-/* App container dark theme */
+/* Dark theme styles for app container */
 .app.dark-theme {
   background-color: #1a1a1a;
   color: #f8f9fa;
@@ -27,16 +27,19 @@ body.dark-theme {
 .app.dark-theme .text-muted {
   color: #adb5bd !important;
 }
+
+/* Hero section styling */
 .hero {
-  position: relative; /* Ensure content is positioned above the image */
+  position: relative; /* Positions content above the image */
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100vh; /* Full viewport height on desktop */
   padding: 3rem 1rem;
   text-align: center;
   color: #fff;
 }
+
 .hero-background {
   position: absolute;
   top: 0;
@@ -48,21 +51,47 @@ body.dark-theme {
   filter: brightness(0.4); /* Mimics the dark overlay */
 }
 
-@media (max-width: 768px) {
-  .hero {
-    min-height: 80vh;
-    padding: 2rem 1rem;
-  }
+/* Dark overlay for text contrast */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Dark overlay for readability */
+  z-index: -1;
 }
 
-@media (max-width: 576px) {
-  .hero {
-    min-height: 70vh;
-    padding: 1.5rem 1rem;
-  }
+/* Animation styles for hero content */
+.hero h1,
+.hero p,
+.hero .btn {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* Navbar styles */
+.hero.visible h1,
+.hero.visible p,
+.hero.visible .btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero.visible h1 {
+  transition-delay: 0.2s;
+}
+
+.hero.visible p {
+  transition-delay: 0.4s;
+}
+
+.hero.visible .btn {
+  transition-delay: 0.6s;
+}
+
+/* Navbar styling */
 .navbar {
   transition: background-color 0.3s ease;
 }
@@ -95,7 +124,7 @@ body.dark-theme {
   color: #0d6efd !important;
 }
 
-/* Profile image styles */
+/* Profile image styling */
 .profile-img-wrapper {
   position: relative;
   width: 200px;
@@ -127,7 +156,7 @@ body.dark-theme {
   z-index: -1;
 }
 
-/* Timeline styles */
+/* Timeline styling for work experience */
 .timeline-item {
   position: relative;
   padding-left: 40px;
@@ -154,7 +183,7 @@ body.dark-theme {
   border-radius: 50%;
 }
 
-/* Project card styles */
+/* Project card styling */
 .project-card {
   transition: transform 0.3s, box-shadow 0.3s;
   border: none;
@@ -186,7 +215,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Fade-in animations */
+/* Fade-in animations for sections */
 .fade-in-section {
   opacity: 0;
   transform: translateY(20px);
@@ -209,7 +238,7 @@ html {
   transform: translateY(0);
 }
 
-/* Progress bar animation */
+/* Progress bar animation for skills */
 .progress-bar {
   transition: width 1s ease-in-out;
 }
@@ -225,15 +254,15 @@ html {
   transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
 }
 
-/* Alert animation */
+/* Alert animation for contact form */
 .alert {
   transition: opacity 0.5s ease-out;
 }
 
-/* Consolidated media queries */
+/* Responsive styles for tablet and mobile */
 @media (max-width: 768px) {
   .hero {
-    background: linear-gradient(to bottom, #343a40 50%, #0d6efd 50%);
+    min-height: 80vh; /* Shorter height for tablets */
     padding: 2rem 1rem;
   }
 
@@ -247,7 +276,7 @@ html {
 
   .btn-lg {
     font-size: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem; /* Touch-friendly button size */
   }
 
   .profile-img-wrapper {
@@ -262,7 +291,8 @@ html {
 
 @media (max-width: 576px) {
   .hero {
-    padding: 2rem 1rem;
+    min-height: 70vh; /* Shorter height for small screens */
+    padding: 1.5rem 1rem;
   }
 
   .hero h1 {

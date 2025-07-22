@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ReactTyped } from 'react-typed';
-import * as bootstrap from 'bootstrap'; // Import Bootstrap JS for tooltips and navbar
+import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import * as bootstrap from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import heroDesktop from './assets/hero.jpg';
@@ -71,7 +72,7 @@ function App() {
 
   return (
     <div className={`app ${theme}-theme`}>
-      <Navbar toggleTheme={toggleTheme} theme={theme} />
+      <CustomNavbar toggleTheme={toggleTheme} theme={theme} />
       <Hero />
       <About />
       <WorkExperience />
@@ -83,76 +84,55 @@ function App() {
   );
 }
 
-function Navbar({ toggleTheme, theme }) {
+function CustomNavbar({ toggleTheme, theme }) {
   return (
-    <nav
-      className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-lg"
+    <Navbar
+      expand="lg"
+      bg="dark"
+      variant="dark"
+      fixed="top"
+      className="shadow-lg"
       aria-label="Main navigation"
     >
-      <div className="container">
-        <a className="navbar-brand fw-bold fs-4" href="#home">
+      <Container>
+        <Navbar.Brand href="#home" className="fw-bold fs-4">
           Erwin Sonido
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <a className="nav-link text-white" href="#about" aria-label="About section">
-                About
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white" href="#work" aria-label="Work section">
-                Work
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white" href="#skills" aria-label="Skills section">
-                Skills
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white" href="#projects" aria-label="Projects section">
-                Projects
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarNav" aria-label="Toggle navigation" />
+        <Navbar.Collapse id="navbarNav">
+          <Nav className="ms-auto">
+            <Nav.Link href="#about" className="text-white" aria-label="About section">
+              About
+            </Nav.Link>
+            <Nav.Link href="#work" className="text-white" aria-label="Work section">
+              Work
+            </Nav.Link>
+            <Nav.Link href="#skills" className="text-white" aria-label="Skills section">
+              Skills
+            </Nav.Link>
+            <Nav.Link href="#projects" className="text-white" aria-label="Projects section">
+              Projects
+            </Nav.Link>
+            <Nav.Link href="#certifications" className="text-white" aria-label="Certifications section">
+              Certifications
+            </Nav.Link>
+            <Nav.Link href="#contact" className="text-white" aria-label="Contact section">
+              Contact
+            </Nav.Link>
+            <Nav.Item>
+              <Button
+                variant="link"
                 className="nav-link text-white"
-                href="#certifications"
-                aria-label="Certifications section"
-              >
-                Certifications
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white" href="#contact" aria-label="Contact section">
-                Contact
-              </a>
-            </li>
-            <li className="nav-item">
-              <button
-                className="nav-link btn btn-link text-white"
                 onClick={toggleTheme}
                 aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
               >
-                {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+                {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+              </Button>
+            </Nav.Item>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
 
@@ -183,7 +163,7 @@ function Hero() {
           src={heroDesktop}
           alt="Hero background"
           className="hero-background"
-          loading="eager" // Load immediately as it’s above the fold
+          loading="eager"
         />
       </picture>
       <div className="container">
@@ -211,7 +191,6 @@ function Hero() {
     </section>
   );
 }
-
 
 function About() {
   return (
@@ -375,7 +354,7 @@ function Projects() {
       description:
         'Created a mobile AR app with video recording, photo capture, and interactive AR features using Vuforia. Developed a booking reservation system with real-time validation and management system using Firebase. Designed a dashboard for handling bookings and user data.',
       link: '#',
-      image: 'https://via.placeholder.com/300x200?text=ARtrock', // Replace with actual image
+      image: 'https://via.placeholder.com/300x200?text=ARtrock',
       tech: ['Unity', 'Vuforia', 'Firebase'],
     },
     {
@@ -383,7 +362,7 @@ function Projects() {
       description:
         'Optimized backend performance by refactoring API endpoints and improving database query efficiency. Collaborated with frontend developers and testers to align API functionality with user interface requirements. Implemented features for farmer registration, crop tracking, and data analytics.',
       link: '#',
-      image: 'https://via.placeholder.com/300x200?text=Farmhub', // Replace with actual image
+      image: 'https://via.placeholder.com/300x200?text=Farmhub',
       tech: ['Lumen', 'Vue.js', 'MySQL'],
     },
   ];
