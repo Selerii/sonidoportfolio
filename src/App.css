@@ -27,7 +27,16 @@ body.dark-theme {
 .app.dark-theme .text-muted {
   color: #adb5bd !important;
 }
-
+.hero {
+  position: relative; /* Ensure content is positioned above the image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #fff;
+}
 .hero-background {
   position: absolute;
   top: 0;
